@@ -1,0 +1,135 @@
+{
+    "credetials": {
+        "invalid": {
+            "username": "test",
+            "password": "test"
+        }
+    },
+    "fixtures": {
+        "hoursNumber": 1,
+        "minutesNumber": 1,
+        "roundFieldValue": 1,
+        "homeTeamDropdownValue": "Perth Wildcats",
+        "awayTeamDropdownValue": "Try Boys Grizzlies",
+        "venueDropdownValue": "Lethbridge",
+        "startDatePickerValue": "05012022",
+        "typeDropdownValue": "REGULAR",
+        "statusDropdownValue": "SCHEDULED"
+    },
+    "game": {
+        "home": "home",
+        "away": "away",
+        "outBox": "out box",
+        "inBox": "in box",
+        "jumpShot": "jump shot",
+        "layup": "layup",
+        "fadeAwayJumpShot": "fade away jump shot",
+        "floatingJumpShot": "floating jump shot",
+        "pullUpJumpShot": "pull up jump shot",
+        "stepBackJumpShot": "step back jump shot",
+        "turnAroundJumpShot": "turn around jump shot",
+        "drivingLayup": "driving layup",
+        "hookShot": "hook shot",
+        "alleyOop": "alley oop",
+        "dunk": "dunk",
+        "noAssist": "no assist",
+        "assist": "assist",
+        "foulOnShotTrue": true,
+        "foulOnShotFalse": false,
+        "fastBreakTrue": true,
+        "fastBreakFalse": false,
+        "defensiveTrue": true,
+        "defensiveFalse": false,
+        "made": "made",
+        "miss": "miss",
+        "tipinMade": "made",
+        "tipinMiss": "miss",
+        "tipinMadeFauled": "made - fauled",
+        "noFollowOn": "no follow on",
+        "player": "player",
+        "noPlayer": "no player",
+        "coach": "coach",
+        "bench": "bench",
+        "offensiveFoul": "offensive foul",
+        "technicalFoul": "technical foul",
+        "coachDisqualifying": "coach disqualifying",
+        "unsportsmanlike": "unsportsmanlike",
+        "doubleFoul": "double foul",
+        "disqualifying": "disqualifying",
+        "personalFoul": "personal foul",
+        "coachTechnical": "coach technical",
+        "block": "block",
+        "shotClockValidation": "shot clock validation",
+        "turnover": {
+            "badPass": "Bad pass",
+            "ballHandling": "Ball handling",
+            "outOfBounds": "Out of bounds",
+            "travel": "Travel",
+            "second3Violation": "3 second violation",
+            "second5Violation": "5 second violation",
+            "backCourtViolation": "Back court violation",
+            "offensiveGoalTending": "Offensive goal tending",
+            "doubleDribble": "Double dribble",
+            "carrying": "Carrying",
+            "other": "Other",
+            "second8Violation": "8 second violation",
+            "shotClock": "Shot clock",
+            "teamTurnover": "team turnover",
+            "stealPlayer": "steal player",
+            "noSteal": "no steal"
+        },
+        "sortBy": {
+            "playerName": "Player Name",
+            "active": "Active",
+            "starting": "Starting",
+            "playerNumber": "Player Number"
+        },
+        "homeTeam": {
+            "player": {
+                "position": {
+                    "guard": "Guard",
+                    "pointGuard": "Point Guard",
+                    "shootingGuard": "Shooting Guard",
+                    "forward": "Forward",
+                    "smallForward": "Small Forward",
+                    "powerForward": "Power Forward",
+                    "guardForward": "Guard Forward",
+                    "forwardGuard": "Forward Guard",
+                    "forwardCenter": "Forward Center"
+                }
+            },
+            "staff": {
+                "teamCoachNameValue": "Shae Wilkins",
+                "teamFirstAssistantCoachValue": "Albi Wilkinson",
+                "teamSecondAssistantCoachValue": "Zoe Clark"
+            }
+        },
+        "awayTeam": {
+            "player": {
+                "position": {
+                    "guard": "Guard",
+                    "pointGuard": "Point Guard",
+                    "shootingGuard": "Shooting Guard",
+                    "forward": "Forward",
+                    "smallForward": "Small Forward",
+                    "powerForward": "Power Forward",
+                    "guardForward": "Guard Forward",
+                    "forwardGuard": "Forward Guard",
+                    "forwardCenter": "Forward Center"
+                }
+            },
+            "staff": {
+                "teamCoachNameValue": "Mccauley Bautista",
+                "teamFirstAssistantCoachValue": "Ciaran Sanderson",
+                "teamSecondAssistantCoachValue": "Kain Escobar"
+            }
+        },
+        "jumpBallTypes": {
+            "HeldBallType": "Held ball",
+            "UnclearPossesionType": "Unclear possesion",
+            "LodgedBallType": "Lodged ball",
+            "LooseBallType": "Loose ball",
+            "DoubleViolationType": "Double violation"
+        }
+    }
+}
