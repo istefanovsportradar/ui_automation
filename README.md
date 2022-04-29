@@ -25,5 +25,7 @@ The example starter project for WebDrierIO UI tests. Application Under test will
 # Project structure
 
 1. WebDriverIO/test/**specs** -> In this folder we will keep the test files which we will run
+
 2. WebDriverIO/test/**pageobjects** -> In this folder we will keep page objects, elements and functions
+
 3. WebDriverIO/**_results_** -> In this folder we will keep the recorded video after every test
