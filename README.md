@@ -1,3 +1,5 @@
+
+
 # WebDriverIO ui automation project
 
 The example starter project for WebDrierIO UI tests. Application Under test will be SynergyStats and for fixture creating comp admin.
