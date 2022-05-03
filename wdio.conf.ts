@@ -249,8 +249,19 @@ export const config: WebdriverIO.Config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    before: function (capabilities, specs) {
+    before: async function (capabilities, specs) {
         //browser.maximizeWindow();
+
+        await browser.setWindowSize(1555, 883)
+        const windowSize = await browser.getWindowSize();
+
+        let capabilitie = {
+            capabilities: browser.capabilities,
+            windowSize: windowSize
+        };
+
+        let data = await JSON.stringify(capabilitie, null, 2);
+        await fs.writeFileSync('capabilitie.json', data);
     },
     /**
      * Runs before a WebdriverIO command gets executed.
