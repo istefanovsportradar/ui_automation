@@ -22,8 +22,6 @@ describe('TEST game', () => {
         const fixtures = customData.fixtures
         const game = customData.game
         const position = customData.game.homeTeam.player.position
-        const homeTeam = customData.game.homeTeam
-        const awayTeam = customData.game.awayTeam
         const turnover = customData.game.turnover
         const jumpBallTypes = customData.game.jumpBallTypes
         const token = await HelperPage.getToken()
@@ -452,7 +450,7 @@ describe('TEST game', () => {
         await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameShortTimeout), 'Short timeout', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
         await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameCommercialTimeout), 'Commercial', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
         await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameOfficials), 'Officials', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameCommercial), 'Commercial', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameCommercialTimeout), 'Commercial', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
         await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameMedia), 'Media', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
 
         await browser.pause(1000)
@@ -506,11 +504,11 @@ describe('TEST game', () => {
         await GamePage.makeFoul(game.away, game.home, game.inBox, game.coach, null, 2, game.made, game.player, game.coachDisqualifying, 'no substitution')
         await GamePage.makeFoul(game.away, game.home, game.outBox, game.coach, null, 3, game.miss, game.player, game.coachDisqualifying, 'no substitution')
 
-        await GamePage.jumpBall(jumpBallTypes.HeldBallType)
-        await GamePage.jumpBall(jumpBallTypes.UnclearPossesionType)
-        await GamePage.jumpBall(jumpBallTypes.LodgedBallType)
-        await GamePage.jumpBall(jumpBallTypes.LooseBallType)
-        await GamePage.jumpBall(jumpBallTypes.DoubleViolationType)
+        await GamePage.jumpBall(jumpBallTypes.HeldBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.UnclearPossesionType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.LodgedBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.LooseBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.DoubleViolationType, "non insert mode")
         await browser.pause(1000)
 
         await GamePage.endPeriod('down', 6)
@@ -550,29 +548,6 @@ describe('TEST game', () => {
         await GamePage.makeFoul(game.home, game.away, game.outBox, game.player, game.disqualifying, 2, game.made, game.player, null, 'no substitution')
         await GamePage.made2Points(game.home, game.inBox, game.jumpShot, game.made, game.assist, game.foulOnShotFalse, game.fastBreakTrue, game.defensiveTrue, null, false)
         await GamePage.makeFoul(game.home, game.away, game.outBox, game.player, game.unsportsmanlike, 0, game.miss, game.noPlayer, null, 'no substitution')
-
-        await browser.pause(2000)
-        await HelperPage.waitUntilElement(HelperPage.periodDropDown, 60000)
-        await $(await HelperPage.periodDropDown).selectByVisibleText("P4")
-
-        await browser.pause(2000)
-        const insertBtn = await $$(await HelperPage.insertPlayBtnArray)
-
-        await HelperPage.waitUntilElement(insertBtn[0], 60000)
-        await $(await insertBtn[0]).click()
-
-        await GamePage.changeSemaphoreTime("up", 9, 0, null, null, null)
-
-        await browser.pause(1000)
-        await $(await GamePage.editCheckedStartTimePencil).click()
-        await browser.pause(1000)
-        await GamePage.endPeriod('down', 6)
-
-        await browser.pause(1000)
-        await $(await GamePage.startPeriodBtn).click()
-        await browser.pause(2000)
-
-        await GamePage.made2Points(game.away, game.outBox, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, false)
 
         await browser.pause(5000)
         await $(await GamePage.stopMatchBtn).click()

@@ -130,8 +130,9 @@ class FixturesPage extends Page {
     public async addNewFixture(hoursNumber: number, minutesNumber: number, homeTeam: string, awayTeam: string, venue: string, startDate: string, type: string, status: string) {
         let getDate = await HelperPage.getCanadianTimeAndDate(0, 'hours')
 
-
+        await $(await this.firstTableRow).waitForClickable({ timeout: 60000 })
         await HelperPage.waitUntilElement(this.firstTableRow, 60000)
+        await browser.pause(5000)
         await $(this.firstTableRow).click()
         await HelperPage.waitUntilElement(this.homeTeamDropdown, 60000)
         await $(this.homeTeamDropdown).selectByVisibleText(homeTeam)

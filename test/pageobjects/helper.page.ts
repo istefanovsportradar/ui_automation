@@ -407,7 +407,7 @@ class HelperPage extends Page {
             async () => (await $(await element).isDisplayed()) === true,
             {
                 timeout: timeout,
-                timeoutMsg: `ELEMENT ${element} is not DISPLAYED`
+                timeoutMsg: `ELEMENT ${element} is not DISPLAYED in ${timeout} SECONDS`
             }
         )
     }

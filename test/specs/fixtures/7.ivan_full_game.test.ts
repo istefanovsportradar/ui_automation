@@ -506,11 +506,11 @@ describe('Full game', () => {
         await GamePage.makeFoul(game.away, game.home, game.inBox, game.coach, null, 2, game.made, game.player, game.coachDisqualifying, 'no substitution')
         await GamePage.makeFoul(game.away, game.home, game.outBox, game.coach, null, 3, game.miss, game.player, game.coachDisqualifying, 'no substitution')
 
-        await GamePage.jumpBall(jumpBallTypes.HeldBallType)
-        await GamePage.jumpBall(jumpBallTypes.UnclearPossesionType)
-        await GamePage.jumpBall(jumpBallTypes.LodgedBallType)
-        await GamePage.jumpBall(jumpBallTypes.LooseBallType)
-        await GamePage.jumpBall(jumpBallTypes.DoubleViolationType)
+        await GamePage.jumpBall(jumpBallTypes.HeldBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.UnclearPossesionType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.LodgedBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.LooseBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.DoubleViolationType, "non insert mode")
         await browser.pause(1000)
 
         await GamePage.endPeriod('down', 6)

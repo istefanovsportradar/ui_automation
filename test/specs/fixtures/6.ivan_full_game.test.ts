@@ -47,6 +47,8 @@ describe('Full game', () => {
         //<--- NAVIGATE TO CA WEBSITE --->
         await LoginPage.open(process.env.ALTERNATIVE_URL_CA);
         await HelperPage.waitUntilElement(FixturesPage.firstTableRow, 60000)
+        await $(await FixturesPage.firstTableRow).waitForClickable({ timeout: 60000 })
+        await browser.pause(3000)
         await $(await FixturesPage.addNewFixtureBtn).click()
         await HelperPage.waitUntilElement(FixturesPage.firstTableRow, 60000)
 
@@ -76,6 +78,7 @@ describe('Full game', () => {
         //<--- VERIFY THAT GAME BUTTON IS ENABLED --->
         const igDateAndTimeElementEnabled = '//*/tbody/tr/td[2]/span[1][contains(text(),"' + getDate.getHours.year + '-' + getDate.getHours.month + '-' + getDate.getHours.day + '")]/../span[2][contains(text(),"' + getDate.getHours.hour + ':' + getDate.getMinutes.minute + '")]/../../td/a'
         await HelperPage.waitUntilElement(igDateAndTimeElementEnabled, 60000)
+        await browser.pause(1000)
         const gameSuccessBtn = await $(igDateAndTimeElementEnabled)
             .getAttribute('class')
         await expect(gameSuccessBtn).toContain('btn-success')
@@ -157,6 +160,12 @@ describe('Full game', () => {
         await $(await GamePage.homeTeamStartFirstBtn).click()
         await HelperPage.waitUntilElement(GamePage.teamScoreResult, 60000)
 
+        var homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        var awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+
+        await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
+        await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
+
         //<--- GET URL --->
         await HelperPage.pageUrlId()
 
@@ -181,18 +190,16 @@ describe('Full game', () => {
 
         //CANCEL MISS 3
         await GamePage.miss3Points(game.home, game.pullUpJumpShot, game.away, 'null', 'null', 'null', 'null', 'null', true)
-
         await GamePage.miss2Points(game.home, game.outBox, game.fadeAwayJumpShot, 'null', game.away, 'null', 'null', 'null', 'null', false)
 
         //CANCEL MISS 3
         await GamePage.miss3Points(game.away, game.pullUpJumpShot, game.home, 'null', 'null', 'null', 'null', 'null', true)
-
-        await GamePage.miss2Points(game.away,game.inBox, game.dunk, 'null', game.home, 'null', 'null', 'null', 'null', false)
+        await GamePage.miss2Points(game.away, game.inBox, game.dunk, 'null', game.home, 'null', 'null', 'null', 'null', false)
 
         //CANCEL MISS 2
         await GamePage.miss2Points(game.home, game.inBox, game.hookShot, 'null', game.home, 'null', 'null', 'null', 'null', true)
         await GamePage.miss3Points(game.home, game.stepBackJumpShot, 'null', 'null', game.block, game.away, game.player, 'null', false)
-        
+
         //CANCEL MISS 2
         await GamePage.miss2Points(game.away, game.inBox, game.hookShot, 'null', game.away, 'null', 'null', 'null', 'null', true)
         await GamePage.miss3Points(game.away, game.jumpShot, 'null', 'null', 'null', 'null', 'null', game.shotClockValidation, false)
@@ -207,15 +214,6 @@ describe('Full game', () => {
         //CANCEL MADE 3
         await GamePage.made3Points(game.away, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, true)
         await GamePage.made3Points(game.away, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, false)
-
-        await GamePage.makeFoul(game.home, game.home, game.inBox, game.player, game.offensiveFoul, 0, game.made, game.noPlayer, null, 'no substitution')
-        await GamePage.makeFoul(game.away, game.away, game.inBox, game.player, game.offensiveFoul, 0, game.made, game.noPlayer, null, 'no substitution')
-        await GamePage.miss2Points(game.home, game.inBox, game.hookShot, 'null', game.home, 'null', 'null', 'null', 'null', false)
-        await GamePage.miss2Points(game.home, game.outBox, game.hookShot, 'null', 'null', game.block, game.away, game.player, 'null', false)
-        await GamePage.miss2Points(game.away, game.inBox, game.hookShot, 'null', game.away, 'null', 'null', 'null', 'null', false)
-        await GamePage.miss2Points(game.away, game.outBox, game.hookShot, 'null', 'null', 'null', 'null', 'null', game.shotClockValidation, false)
-        await GamePage.miss3Points(game.home, game.stepBackJumpShot, 'null', 'null', game.block, game.away, game.player, 'null', false)
-        await GamePage.miss3Points(game.away, game.stepBackJumpShot, 'null', 'null', 'null', 'null', 'null', game.shotClockValidation, false)
 
         await HelperPage.waitUntilElement(GamePage.startPeriodBtn, 60000)
         await $(await GamePage.startPeriodBtn).click()
@@ -340,10 +338,24 @@ describe('Full game', () => {
 
         await GamePage.made2Points(game.home, game.outBox, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, false)
 
+        homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+
+        await expect(homeTeamNumberOfFouls).toEqual("FOULS:12")
+        await expect(awayTeamNumberOfFouls).toEqual("FOULS:8")
+
         await browser.pause(5000)
         await $(await GamePage.stopMatchBtn).click()
         await browser.pause(1000)
         await $(await GamePage.stopMatchBtn).click()
+
+        //<--- SECOND PERIOD --->
+
+        homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+
+        await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
+        await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
 
         await GamePage.makeFoul(game.away, game.home, game.outBox, game.player, game.technicalFoul, 3, game.made, game.player, null, 'no substitution')
         await browser.pause(1000)
@@ -352,7 +364,6 @@ describe('Full game', () => {
         await browser.pause(1000)
         await $(await GamePage.editCheckedStartTimePencil).click()
 
-        //<--- SECOND PERIOD --->
         await GamePage.makeSubstitution('5 players')
         await browser.pause(2000)
 
@@ -438,6 +449,12 @@ describe('Full game', () => {
 
         await GamePage.made3Points(game.home, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, false)
 
+        homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+
+        await expect(homeTeamNumberOfFouls).toEqual("FOULS:8")
+        await expect(awayTeamNumberOfFouls).toEqual("FOULS:3")
+
         await browser.pause(5000)
         await $(await GamePage.stopMatchBtn).click()
         await browser.pause(1000)
@@ -457,11 +474,28 @@ describe('Full game', () => {
         await $(await GamePage.switchTeamsBtn).click()
         await browser.pause(1000)
 
+        homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+
+        await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
+        await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
+
         await GamePage.makeSubstitution('random')
         await GamePage.makeTurnover(game.away, game.player, turnover.badPass, turnover.stealPlayer)
+        await GamePage.makeFoul(game.home, game.home, game.inBox, game.player, game.offensiveFoul, 0, game.made, game.noPlayer, null, 'no substitution')
+        await GamePage.makeFoul(game.away, game.away, game.inBox, game.player, game.offensiveFoul, 0, game.made, game.noPlayer, null, 'no substitution')
+        await GamePage.miss2Points(game.home, game.inBox, game.hookShot, 'null', game.home, 'null', 'null', 'null', 'null', false)
+        await GamePage.miss2Points(game.home, game.outBox, game.hookShot, 'null', 'null', game.block, game.away, game.player, 'null', false)
+        await GamePage.miss2Points(game.away, game.inBox, game.hookShot, 'null', game.away, 'null', 'null', 'null', 'null', false)
+        await GamePage.miss2Points(game.away, game.outBox, game.hookShot, 'null', 'null', 'null', 'null', 'null', game.shotClockValidation, false)
+        await GamePage.miss3Points(game.home, game.stepBackJumpShot, 'null', 'null', game.block, game.away, game.player, 'null', false)
+        await GamePage.miss3Points(game.away, game.stepBackJumpShot, 'null', 'null', 'null', 'null', 'null', game.shotClockValidation, false)
         await GamePage.made2Points(game.home, game.outBox, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveTrue, null, false)
 
-        await GamePage.miss2Points(game.away, game.outBox, game.floatingJumpShot, game.home, 'null', 'null', 'null', 'null', 'null', false)
+        //MAKE SUBSTITUTION BETWEEN TWO FREETHROWS
+        await GamePage.makeTurnover(game.away, game.player, turnover.badPass, turnover.stealPlayer)
+        await GamePage.makeFoul(game.home, game.home, game.inBox, game.player, game.disqualifying, 2, game.made, game.player, null, 'make substitution')
+        await GamePage.makeFoul(game.away, game.home, game.outBox, game.player, game.personalFoul, 1, game.made, game.player, null, 'no substitution')
 
         await GamePage.miss2Points(game.home, game.outBox, game.dunk, 'null', game.away, 'null', 'null', 'null', 'null', false)
 
@@ -523,6 +557,12 @@ describe('Full game', () => {
 
         await GamePage.made2Points(game.away, game.inBox, game.stepBackJumpShot, game.made, game.assist, game.foulOnShotFalse, game.fastBreakTrue, game.defensiveTrue, null, false)
 
+        homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+
+        await expect(homeTeamNumberOfFouls).toEqual("FOULS:3")
+        await expect(awayTeamNumberOfFouls).toEqual("FOULS:1")
+
         await browser.pause(5000)
         await $(await GamePage.stopMatchBtn).click()
         await browser.pause(1000)
@@ -536,6 +576,12 @@ describe('Full game', () => {
         await browser.pause(1000)
 
         //<--- FOURTH PERIOD --->
+        // homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        // awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+
+        // await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
+        // await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
+
         await GamePage.makeSubstitution('random')
         await browser.pause(1000)
         await GamePage.made2Points(game.home, game.outBox, game.jumpShot, game.made, game.assist, game.foulOnShotFalse, game.fastBreakTrue, game.defensiveTrue, null, false)
@@ -549,10 +595,6 @@ describe('Full game', () => {
         await GamePage.makeFoul(game.away, game.away, game.inBox, game.coach, null, 1, game.made, game.player, game.coachDisqualifying, 'no substitution')
         await GamePage.makeFoul(game.home, game.home, game.inBox, game.player, game.unsportsmanlike, 2, game.miss, game.noPlayer, null, 'no substitution')
         await GamePage.makeFoul(game.home, game.away, game.outBox, game.player, game.doubleFoul, 3, game.miss, game.noPlayer, null, 'no substitution')
-
-        //MAKE SUBSTITUTION BETWEEN TWO FREETHROWS
-        await GamePage.makeFoul(game.home, game.home, game.inBox, game.player, game.disqualifying, 2, game.made, game.player, null, 'make substitution')
-        await GamePage.makeFoul(game.away, game.home, game.outBox, game.player, game.personalFoul, 1, game.made, game.player, null, 'no substitution')
 
         await GamePage.makeFoul(game.home, game.home, game.inBox, game.bench, null, 0, game.made, null, null, 'no substitution')
         await GamePage.makeFoul(game.away, game.home, game.outBox, game.bench, null, 1, game.miss, null, null, 'no substitution')
@@ -569,11 +611,11 @@ describe('Full game', () => {
         await GamePage.makeFoul(game.away, game.home, game.inBox, game.coach, null, 2, game.made, game.player, game.coachDisqualifying, 'no substitution')
         await GamePage.makeFoul(game.away, game.home, game.outBox, game.coach, null, 3, game.miss, game.player, game.coachDisqualifying, 'no substitution')
 
-        await GamePage.jumpBall(jumpBallTypes.HeldBallType)
-        await GamePage.jumpBall(jumpBallTypes.UnclearPossesionType)
-        await GamePage.jumpBall(jumpBallTypes.LodgedBallType)
-        await GamePage.jumpBall(jumpBallTypes.LooseBallType)
-        await GamePage.jumpBall(jumpBallTypes.DoubleViolationType)
+        await GamePage.jumpBall(jumpBallTypes.HeldBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.UnclearPossesionType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.LodgedBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.LooseBallType, "non insert mode")
+        await GamePage.jumpBall(jumpBallTypes.DoubleViolationType, "non insert mode")
         await browser.pause(1000)
 
         await GamePage.endPeriod('down', 6)
@@ -599,6 +641,12 @@ describe('Full game', () => {
         await $(await GamePage.startPeriodBtn).click()
 
         //<- OVER TIME PERIOD ->
+
+        // homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        // awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+
+        // await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
+        // await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
 
         await GamePage.makeSubstitution('random')
         await GamePage.makeTurnover(game.home, game.player, turnover.badPass, turnover.stealPlayer)
@@ -626,6 +674,117 @@ describe('Full game', () => {
 
         await GamePage.makeTurnover(game.home, game.player, turnover.badPass, turnover.stealPlayer)
         await GamePage.made2Points(game.away, game.outBox, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, false)
+
+        await HelperPage.waitUntilElement(HelperPage.periodDropDown, 60000)
+        await $(await HelperPage.periodDropDown).selectByVisibleText("P1")
+
+        await browser.pause(2000)
+        let insertBtnP1 = await $$(await HelperPage.insertPlayBtnArray)
+
+        await HelperPage.waitUntilElement(insertBtnP1[0], 60000)
+        await $(await insertBtnP1[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 7, 0, 'null', null, null)
+
+        await GamePage.made2Points(game.home, game.outBox, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, false)
+
+        await GamePage.insertEvents()
+
+        await HelperPage.waitUntilElement(insertBtnP1[0], 60000)
+        await $(await insertBtnP1[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 6, 0, 'null', null, null)
+
+        await GamePage.made2Points(game.away, game.outBox, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, false)
+
+        await GamePage.insertEvents()
+
+        await HelperPage.waitUntilElement(HelperPage.periodDropDown, 60000)
+        await $(await HelperPage.periodDropDown).selectByVisibleText("P2")
+
+        await browser.pause(2000)
+        let insertBtnP2 = await $$(await HelperPage.insertPlayBtnArray)
+
+        await HelperPage.waitUntilElement(insertBtnP2[0], 60000)
+        await $(await insertBtnP2[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 5, 0, 'null', null, null)
+
+        await GamePage.miss2Points(game.home, game.inBox, game.hookShot, 'null', game.away, 'null', 'null', 'null', 'null', false)
+
+        await GamePage.insertEvents()
+
+        await HelperPage.waitUntilElement(insertBtnP2[0], 60000)
+        await $(await insertBtnP2[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 4, 0, 'null', null, null)
+
+        await GamePage.miss3Points(game.away, game.fadeAwayJumpShot, 'null', game.away, 'null', 'null', 'null', 'null', false)
+
+        await GamePage.insertEvents()
+
+        await HelperPage.waitUntilElement(HelperPage.periodDropDown, 60000)
+        await $(await HelperPage.periodDropDown).selectByVisibleText("P3")
+
+        await browser.pause(2000)
+        let insertBtnP3 = await $$(await HelperPage.insertPlayBtnArray)
+
+        await HelperPage.waitUntilElement(insertBtnP3[0], 60000)
+        await $(await insertBtnP3[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 3, 0, 'null', null, null)
+
+        await GamePage.makeFoul(game.home, game.home, game.inBox, game.player, game.offensiveFoul, 0, game.made, game.noPlayer, null, 'no substitution')
+
+        await GamePage.insertEvents()
+
+        await HelperPage.waitUntilElement(insertBtnP3[0], 60000)
+        await $(await insertBtnP3[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 2, 0, 'null', null, null)
+
+        await GamePage.makeTurnover(game.away, game.player, turnover.travel, turnover.stealPlayer)
+
+        await GamePage.insertEvents()
+
+        await HelperPage.waitUntilElement(HelperPage.periodDropDown, 60000)
+        await $(await HelperPage.periodDropDown).selectByVisibleText("P4")
+
+        await browser.pause(2000)
+        let insertBtnP4 = await $$(await HelperPage.insertPlayBtnArray)
+
+        await HelperPage.waitUntilElement(insertBtnP4[0], 60000)
+        await $(await insertBtnP4[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 1, 0, 'null', null, null)
+
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameHomeTeamCallTimeout), await $(GamePage.gameShortTimeout), 'Short timeout', null, null, await $(GamePage.gameTimeoutOkBtn))
+
+        await GamePage.insertEvents()
+
+        await HelperPage.waitUntilElement(HelperPage.periodDropDown, 60000)
+        await $(await HelperPage.periodDropDown).selectByVisibleText("OT1")
+
+        await browser.pause(2000)
+        let insertBtnOT1 = await $$(await HelperPage.insertPlayBtnArray)
+
+        await HelperPage.waitUntilElement(insertBtnOT1[0], 60000)
+        await $(await insertBtnOT1[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 0, 2, 'null', null, null)
+
+        await GamePage.jumpBall(jumpBallTypes.LodgedBallType, "insert mode")
+
+        await GamePage.insertEvents()
+
+        await HelperPage.waitUntilElement(insertBtnOT1[0], 60000)
+        await $(await insertBtnOT1[0]).click()
+
+        await GamePage.changeSemaphoreTime("up", 0, 1, 'null', null, null)
+
+        await GamePage.makeSubstitution('random')
+
+        await GamePage.insertEvents()
 
         await browser.pause(5000)
         await $(await GamePage.stopMatchBtn).click()
