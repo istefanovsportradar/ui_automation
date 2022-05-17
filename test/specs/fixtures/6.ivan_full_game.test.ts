@@ -51,6 +51,7 @@ describe('Full game', () => {
         await browser.pause(3000)
         await $(await FixturesPage.addNewFixtureBtn).click()
         await HelperPage.waitUntilElement(FixturesPage.firstTableRow, 60000)
+        await browser.pause(3000)
 
         //<--- POPULATE FIXTURE --->
         let getDate = await FixturesPage.addNewFixture(
@@ -576,11 +577,11 @@ describe('Full game', () => {
         await browser.pause(1000)
 
         //<--- FOURTH PERIOD --->
-        // homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
-        // awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+         //homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+         //awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
 
-        // await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
-        // await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
+         //await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
+         //await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
 
         await GamePage.makeSubstitution('random')
         await browser.pause(1000)
