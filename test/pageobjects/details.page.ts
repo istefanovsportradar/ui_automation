@@ -117,6 +117,8 @@ class DetailsPage extends Page {
         }
 
         await $(await this.detailsNextBtn).click()
+
+        return randomAttendanceNumber
     }
 }
 

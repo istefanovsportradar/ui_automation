@@ -52,6 +52,7 @@ describe('Full game', () => {
         await $(await FixturesPage.addNewFixtureBtn).click()
         await HelperPage.waitUntilElement(FixturesPage.firstTableRow, 60000)
         await browser.pause(3000)
+        await $(await FixturesPage.firstTableRow).waitForClickable({ timeout: 60000 })
 
         //<--- POPULATE FIXTURE --->
         let getDate = await FixturesPage.addNewFixture(
@@ -87,8 +88,7 @@ describe('Full game', () => {
 
         //<--- ADD DETAILS --->
 
-        await DetailsPage.populateOfficials()
-        //await $(await DetailsPage.detailsNextBtn).click()
+        let attendanceNumber = await DetailsPage.populateOfficials()
 
         //<--- ADD ROSTER - SELECT 9 ACTIVE PLAYERS, 5 STARTERS AND 1 CAPT --->
         await HelperPage.waitUntilElement(TeamSetupPage.homeTeamRosterBtn, 60000)
@@ -577,11 +577,11 @@ describe('Full game', () => {
         await browser.pause(1000)
 
         //<--- FOURTH PERIOD --->
-         //homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
-         //awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+        // homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        // awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
 
-         //await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
-         //await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
+        // await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
+        // await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
 
         await GamePage.makeSubstitution('random')
         await browser.pause(1000)
@@ -671,7 +671,6 @@ describe('Full game', () => {
 
         await browser.pause(1000)
         await $(await GamePage.startPeriodBtn).click()
-        await browser.pause(2000)
 
         await GamePage.makeTurnover(game.home, game.player, turnover.badPass, turnover.stealPlayer)
         await GamePage.made2Points(game.away, game.outBox, game.jumpShot, game.made, game.noAssist, game.foulOnShotFalse, game.fastBreakFalse, game.defensiveFalse, null, false)
@@ -802,7 +801,37 @@ describe('Full game', () => {
         await HelperPage.waitUntilElement(GamePage.completeLabel, 60000)
         await expect(await $(GamePage.completeLabel).getText()).toContain("Complete")
 
-        await browser.pause(1000)
+        await browser.pause(5000)
+
+        teamScoreResult = await HelperPage.returnArrayElementsTextFunction(await GamePage.teamScoreResult)
+
+        const playByPlayResponse = await HelperPage.getPlayByPlay(process.env.API_URL, token)
+
+        await expect(playByPlayResponse.response.status).toEqual(200)
+        //await expect(playByPlayResponse.objectRows).toEqual(30613)
+        await expect(playByPlayResponse.homeTeamPbpScore).toEqual(parseInt(teamScoreResult[0]))
+        await expect(playByPlayResponse.awayTeamPbpScore).toEqual(parseInt(teamScoreResult[1]))
+
+        const rolesResponse = await HelperPage.getRoles(process.env.API_URL, token)
+        await expect(rolesResponse.response.status).toEqual(200)
+        // await expect(rolesResponse.response.role1).toBe("COACH")
+        // await expect(rolesResponse.response.role2).toBe("COACH_ASSISTANT")
+        // await expect(rolesResponse.response.role3).toBe("COACH_ASSISTANT")
+        // await expect(rolesResponse.response.role4).toBe("COACH")
+        // await expect(rolesResponse.response.role5).toBe("COACH_ASSISTANT")
+        // await expect(rolesResponse.response.role6).toBe("COACH_ASSISTANT")
+        // await expect(rolesResponse.response.role7).toBe("COMMISSIONER")
+        // await expect(rolesResponse.response.role8).toBe("CREW_CHIEF")
+        // await expect(rolesResponse.response.role9).toBe("DOCTOR")
+        // await expect(rolesResponse.response.role10).toBe("GROUNDSKEEPER")
+
+        const fixturesResponse = await HelperPage.getFixtures(process.env.API_URL, token)
+        await expect(fixturesResponse.response.status).toEqual(200)
+        await expect(fixturesResponse.response.data.data[0].status).toBe("CONFIRMED")
+        await expect(fixturesResponse.response.data.data[0].attendance).toEqual(attendanceNumber)
+        // await expect(fixturesResponse.response.data.data[0].competitors[1].score).toBe(teamScoreResult[1])
+        // await expect(fixturesResponse.response.data.data[0].competitors[0].score).toBe(teamScoreResult[0])
+
 
         await HelperPage.getStatisticsForEntityInFixtures(process.env.API_URL, token, "live")
 

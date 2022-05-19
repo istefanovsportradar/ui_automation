@@ -399,6 +399,174 @@ class HelperPage extends Page {
 
     /**
     * a method to encapsule automation code to interact with the page
+    * e.g. function getResponse return response
+    * @param example await HelperPage.getPlayByPlay()
+    */
+    public async getPlayByPlay(apiUrl: string, token: string) {
+
+        var url = await browser.getUrl();
+        var fixtureId = url.substring(url.lastIndexOf("/") + 1);
+
+        let fixture = {
+            id: fixtureId
+        };
+
+
+        const authToken = 'Bearer '.concat(token);
+        await browser.pause(1000)
+        const endpoint = `${apiUrl}${process.env.BASKETBALL}/o/${process.env.ORGANIZATION_ID}/fixtures/${fixture.id}/playbyplay`
+
+        let res = await axios.get(endpoint, { headers: { Authorization: authToken } })
+            .then(async function (response) {
+                return response;
+            })
+            .catch(async function (error) {
+                return error;
+            });
+
+        let objectRows = res.data.meta.count
+        let numbLinks = Object.keys(res.data.links).length
+        let numbMeta = Object.keys(res.data.meta).length
+
+        let arrayNumb = []
+        let arrayFixture = []
+        let arrayOrganization = []
+        let arrayPerson = []
+        let arrayScores = []
+        let arrayEntity = []
+        let arrayNumbLinks = []
+        let arrayNumbMeta = []
+
+        for (var i = 0; i < objectRows; i++) {
+            let numb = Object.keys(res.data.data[i]).length
+            let numbFixture = Object.keys(res.data.data[i].fixture).length
+            let numbOrganization = Object.keys(res.data.data[i].organization).length
+            let numbScores = Object.keys(res.data.data[i].scores).length
+
+            if (res.data.data[i].entity != undefined) {
+                let numbEntity = Object.keys(res.data.data[i].entity).length
+                arrayEntity.push(numbEntity)
+            }
+
+            if (res.data.data[i].person != undefined) {
+                let numbPerson = Object.keys(res.data.data[i].person).length
+                arrayPerson.push(numbPerson)
+            }
+
+            arrayNumb.push(numb)
+            arrayFixture.push(numbFixture)
+            arrayOrganization.push(numbOrganization)
+            arrayScores.push(numbScores)
+        }
+
+        arrayNumbLinks.push(numbLinks)
+        arrayNumbMeta.push(numbMeta)
+
+        let totalArrayNumb = arrayNumb.reduce((a, b) => a + b, 0)
+        let totalArrayFixture = arrayFixture.reduce((a, b) => a + b, 0)
+        let totalArrayOrganization = arrayOrganization.reduce((a, b) => a + b, 0)
+        let totalArrayPerson = arrayPerson.reduce((a, b) => a + b, 0)
+        let totalArrayScores = arrayScores.reduce((a, b) => a + b, 0)
+        let totalArrayEntity = arrayEntity.reduce((a, b) => a + b, 0)
+        let totalArrayNumbLinks = arrayNumbLinks.reduce((a, b) => a + b, 0)
+        let totalArrayNumbMeta = arrayNumbMeta.reduce((a, b) => a + b, 0)
+
+        let total = totalArrayNumb + totalArrayFixture + totalArrayOrganization + totalArrayPerson + totalArrayScores + totalArrayEntity + totalArrayNumbLinks + totalArrayNumbMeta
+
+        let homeTeamPbpScore = res.data.data[res.data.data.length - 1].scores[process.env.HOME_TEAM_SCORE_ID]
+        let awayTeamPbpScore = res.data.data[res.data.data.length - 1].scores[process.env.AWAY_TEAM_SCORE_ID]
+
+        let pbp = {
+            response: res,
+            objectRows: total,
+            homeTeamPbpScore: homeTeamPbpScore,
+            awayTeamPbpScore: awayTeamPbpScore
+        };
+
+        return pbp
+
+    }
+
+    /**
+    * a method to encapsule automation code to interact with the page
+    * e.g. function getResponse return response
+    * @param example await HelperPage.getRoles()
+    */
+    public async getRoles(apiUrl: string, token: string) {
+
+        var url = await browser.getUrl();
+        var fixtureId = url.substring(url.lastIndexOf("/") + 1);
+
+        let fixture = {
+            id: fixtureId
+        };
+
+
+        const authToken = 'Bearer '.concat(token);
+        await browser.pause(3000)
+        const endpoint = `${apiUrl}${process.env.BASKETBALL}/o/${process.env.ORGANIZATION_ID}/fixtures/${fixture.id}/roles`
+
+        let res = await axios.get(endpoint, { headers: { Authorization: authToken } })
+            .then(async function (response) {
+                return response;
+            })
+            .catch(async function (error) {
+                return error;
+            });
+
+        let metaCount = res.data.meta.count
+
+        let rols = {
+            response: res
+        };
+
+        for (var i = 0; i < metaCount; i++) {
+            rols.response["role" + (i + 1)] = res.data.data[i].role;
+        }
+
+        return rols
+    }
+
+    /**
+    * a method to encapsule automation code to interact with the page
+    * e.g. function getResponse return response
+    * @param example await HelperPage.getRoles()
+    */
+    public async getFixtures(apiUrl: string, token: string) {
+
+        var url = await browser.getUrl();
+        var fixtureId = url.substring(url.lastIndexOf("/") + 1);
+
+        let fixture = {
+            id: fixtureId
+        };
+
+
+        const authToken = 'Bearer '.concat(token);
+        await browser.pause(3000)
+        const endpoint = `${apiUrl}${process.env.BASKETBALL}/o/${process.env.ORGANIZATION_ID}/fixtures/${fixture.id}`
+
+        let res = await axios.get(endpoint, { headers: { Authorization: authToken } })
+            .then(async function (response) {
+                return response;
+            })
+            .catch(async function (error) {
+                return error;
+            });
+
+        let objectRows = Object.keys(res.data).length;
+
+        let fixtures = {
+            response: res,
+            objectRows: objectRows
+        };
+
+        return fixtures
+
+    }
+
+    /**
+    * a method to encapsule automation code to interact with the page
     * e.g. function waitUntilElement write id into the file
     */
     public async waitUntilElement(element: any, timeout: number) {
