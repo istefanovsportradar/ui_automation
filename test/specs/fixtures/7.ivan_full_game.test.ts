@@ -448,12 +448,12 @@ describe('Full game', () => {
         await GamePage.makeTurnover(game.away, turnover.teamTurnover, turnover.shotClock, 'null')
         await GamePage.makeTurnover(game.home, turnover.teamTurnover, turnover.other, 'null')
 
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameHomeTeamCallTimeout), await $(GamePage.gameFullTimeout), 'Full timeout', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameShortTimeout), 'Short timeout', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameCommercialTimeout), 'Commercial', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameOfficials), 'Officials', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameCommercial), 'Commercial', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameMedia), 'Media', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameHomeTeamCallTimeout), await $(GamePage.gameFullTimeout), 'Full timeout', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameShortTimeout), 'Short timeout', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameCommercialTimeout), 'Commercial', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameOfficials), 'Officials', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameCommercial), 'Commercial', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameMedia), 'Media', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
 
         await browser.pause(1000)
 

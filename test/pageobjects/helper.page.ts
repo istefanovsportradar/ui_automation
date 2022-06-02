@@ -412,6 +412,7 @@ class HelperPage extends Page {
         };
 
 
+        await browser.pause(5000)
         const authToken = 'Bearer '.concat(token);
         await browser.pause(1000)
         const endpoint = `${apiUrl}${process.env.BASKETBALL}/o/${process.env.ORGANIZATION_ID}/fixtures/${fixture.id}/playbyplay`
@@ -513,6 +514,8 @@ class HelperPage extends Page {
             .catch(async function (error) {
                 return error;
             });
+
+        await browser.pause(3000)
 
         let metaCount = res.data.meta.count
 

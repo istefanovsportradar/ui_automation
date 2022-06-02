@@ -41,13 +41,14 @@ describe('Full game', () => {
         //<--- SELECT ORGANIZATION --->
 
         await HelperPage.waitUntilElement(OrganizationsPage.organizationId, 60000)
+        await browser.pause(3000)
 
         await OrganizationsPage.selectOrganizationByXpath(process.env.ORGANIZATION_ID)
 
         //<--- NAVIGATE TO CA WEBSITE --->
         await LoginPage.open(process.env.ALTERNATIVE_URL_CA);
-        await HelperPage.waitUntilElement(FixturesPage.firstTableRow, 60000)
-        await $(await FixturesPage.firstTableRow).waitForClickable({ timeout: 60000 })
+        await HelperPage.waitUntilElement(FixturesPage.firstTableRow, 120000)
+        await $(await FixturesPage.firstTableRow).waitForClickable({ timeout: 120000 })
         await browser.pause(3000)
         await $(await FixturesPage.addNewFixtureBtn).click()
         await HelperPage.waitUntilElement(FixturesPage.firstTableRow, 60000)
@@ -182,6 +183,7 @@ describe('Full game', () => {
         await browser.pause(1000)
         await expect(teamScoreResult[0]).toEqual("0")
         await expect(teamScoreResult[1]).toEqual("0")
+
 
         //CANCEL MADE 2
         await GamePage.made2Points(game.home, game.inBox, game.turnAroundJumpShot, game.made, game.assist, game.foulOnShotFalse, game.fastBreakTrue, game.defensiveTrue, null, true)
@@ -401,7 +403,7 @@ describe('Full game', () => {
 
         await GamePage.makeTurnover(game.home, game.player, turnover.badPass, turnover.stealPlayer)
 
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameHomeTeamCallTimeout), await $(GamePage.gameFullTimeout), 'Full timeout', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameHomeTeamCallTimeout), await $(GamePage.gameFullTimeout), 'Full timeout', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
         await GamePage.makeSubstitution('random')
 
         //<--- MADE 3 POINTS --->
@@ -541,12 +543,12 @@ describe('Full game', () => {
         await GamePage.makeTurnover(game.away, turnover.teamTurnover, turnover.shotClock, 'null')
         await GamePage.makeTurnover(game.home, turnover.teamTurnover, turnover.other, 'null')
 
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameHomeTeamCallTimeout), await $(GamePage.gameFullTimeout), 'Full timeout', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameShortTimeout), 'Short timeout', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameCommercialTimeout), 'Commercial', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameOfficials), 'Officials', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameCommercial), 'Commercial', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
-        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameMedia), 'Media', await $(GamePage.gameBloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameHomeTeamCallTimeout), await $(GamePage.gameFullTimeout), 'Full timeout', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameShortTimeout), 'Short timeout', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameAwayTeamCallTimeout), await $(GamePage.gameCommercialTimeout), 'Commercial', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameOfficials), 'Officials', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameCommercial), 'Commercial', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
+        await GamePage.checkTimeoutBtns(await $(GamePage.gameTimeoutBtn), await $(GamePage.gameOfficialTimeout), await $(GamePage.gameMedia), 'Media', await $(GamePage.bloodRuleCheckbox), await $(GamePage.gameMandatoryCheckbox), await $(GamePage.gameTimeoutOkBtn))
 
         await browser.pause(1000)
 
@@ -577,11 +579,11 @@ describe('Full game', () => {
         await browser.pause(1000)
 
         //<--- FOURTH PERIOD --->
-        // homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
-        // awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+        homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
 
-        // await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
-        // await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
+        await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
+        await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
 
         await GamePage.makeSubstitution('random')
         await browser.pause(1000)
@@ -643,11 +645,11 @@ describe('Full game', () => {
 
         //<- OVER TIME PERIOD ->
 
-        // homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
-        // awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
+        homeTeamNumberOfFouls = await $(await GamePage.homeTeamFaulsLabel).getText()
+        awayTeamNumberOfFouls = await $(await GamePage.awayTeamFaulsLabel).getText()
 
-        // await expect(homeTeamNumberOfFouls).toEqual("FOULS:0")
-        // await expect(awayTeamNumberOfFouls).toEqual("FOULS:0")
+        await expect(homeTeamNumberOfFouls).toEqual("FOULS:4")
+        await expect(awayTeamNumberOfFouls).toEqual("FOULS:1")
 
         await GamePage.makeSubstitution('random')
         await GamePage.makeTurnover(game.home, game.player, turnover.badPass, turnover.stealPlayer)
@@ -808,29 +810,29 @@ describe('Full game', () => {
         const playByPlayResponse = await HelperPage.getPlayByPlay(process.env.API_URL, token)
 
         await expect(playByPlayResponse.response.status).toEqual(200)
-        //await expect(playByPlayResponse.objectRows).toEqual(30613)
+        //await expect(playByPlayResponse.objectRows).toEqual(30064)
         await expect(playByPlayResponse.homeTeamPbpScore).toEqual(parseInt(teamScoreResult[0]))
         await expect(playByPlayResponse.awayTeamPbpScore).toEqual(parseInt(teamScoreResult[1]))
 
         const rolesResponse = await HelperPage.getRoles(process.env.API_URL, token)
         await expect(rolesResponse.response.status).toEqual(200)
-        // await expect(rolesResponse.response.role1).toBe("COACH")
-        // await expect(rolesResponse.response.role2).toBe("COACH_ASSISTANT")
-        // await expect(rolesResponse.response.role3).toBe("COACH_ASSISTANT")
-        // await expect(rolesResponse.response.role4).toBe("COACH")
-        // await expect(rolesResponse.response.role5).toBe("COACH_ASSISTANT")
-        // await expect(rolesResponse.response.role6).toBe("COACH_ASSISTANT")
-        // await expect(rolesResponse.response.role7).toBe("COMMISSIONER")
-        // await expect(rolesResponse.response.role8).toBe("CREW_CHIEF")
-        // await expect(rolesResponse.response.role9).toBe("DOCTOR")
-        // await expect(rolesResponse.response.role10).toBe("GROUNDSKEEPER")
+        //await expect(rolesResponse.response.role1).toBe("COACH")
+        //await expect(rolesResponse.response.role2).toBe("COACH_ASSISTANT")
+        //await expect(rolesResponse.response.role3).toBe("COACH_ASSISTANT")
+        //await expect(rolesResponse.response.role4).toBe("COACH")
+        //await expect(rolesResponse.response.role5).toBe("COACH_ASSISTANT")
+        //await expect(rolesResponse.response.role6).toBe("COACH_ASSISTANT")
+        //await expect(rolesResponse.response.role7).toBe("COMMISSIONER")
+        //await expect(rolesResponse.response.role8).toBe("CREW_CHIEF")
+        //await expect(rolesResponse.response.role9).toBe("DOCTOR")
+        //await expect(rolesResponse.response.role10).toBe("GROUNDSKEEPER")
 
         const fixturesResponse = await HelperPage.getFixtures(process.env.API_URL, token)
         await expect(fixturesResponse.response.status).toEqual(200)
         await expect(fixturesResponse.response.data.data[0].status).toBe("CONFIRMED")
         await expect(fixturesResponse.response.data.data[0].attendance).toEqual(attendanceNumber)
-        // await expect(fixturesResponse.response.data.data[0].competitors[1].score).toBe(teamScoreResult[1])
-        // await expect(fixturesResponse.response.data.data[0].competitors[0].score).toBe(teamScoreResult[0])
+        await expect(fixturesResponse.response.data.data[0].competitors[1].score).toBe(teamScoreResult[0])
+        await expect(fixturesResponse.response.data.data[0].competitors[0].score).toBe(teamScoreResult[1])
 
 
         await HelperPage.getStatisticsForEntityInFixtures(process.env.API_URL, token, "live")

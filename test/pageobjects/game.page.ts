@@ -83,7 +83,7 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get awayTeamAttakMade2btn() {
-        return '#root > div > div.main > div.team-buttons-base.arrowTop.enabled-true > div.team-buttons.team-1.dark > div.team-button.enabled-true.success-1 > span'
+        return 'div.team-buttons.team-1.dark > div.team-button.enabled-true.success-1 > span'
     }
     /**
      * define selectors using getter methods
@@ -107,7 +107,7 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get awayTeamAttackFoulBtn() {
-        return '#root > div > div.main > div.team-buttons-base.arrowTop.enabled-true > div.team-buttons.team-1.dark > div:nth-child(3)'
+        return 'div.team-buttons.team-1.dark > div:nth-child(3)'
     }
     /**
      * define selectors using getter methods
@@ -119,7 +119,7 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get awayTeamAttackTurnOverBtn() {
-        return '#root > div > div.main > div.team-buttons-base.arrowTop.enabled-true > div.team-buttons.team-1.dark > div:nth-child(4)'
+        return 'div.team-buttons.team-1.dark > div:nth-child(4)'
     }
     /**
      * define selectors using getter methods
@@ -131,7 +131,7 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get awayDefenceTeamMade3Btn() {
-        return '#root > div > div.main > div.team-buttons-base.arrowTop.enabled-true > div.team-buttons.team-0.dark > div.team-button.enabled-true.success-1 > span'
+        return 'div.team-buttons.team-0.dark > div.team-button.enabled-true.success-1 > span'
     }
     /**
      * define selectors using getter methods
@@ -143,19 +143,19 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get awayDefenceTeamMiss3Btn() {
-        return '#root > div > div.main > div.team-buttons-base.arrowTop.enabled-true > div.team-buttons.team-0.dark > div.team-button.enabled-true.success-0 > span'
+        return 'div.team-buttons.team-0.dark > div.team-button.enabled-true.success-0 > span'
     }
     /**
      * define selectors using getter methods
      */
     public get homeDefenceTeamFoulBtn() {
-        return '#root > div > div.main > div.team-buttons-base.arrowTop.enabled-true > div.team-buttons.team-0.dark > div:nth-child(3)'
+        return 'div.team-buttons.team-0.dark > div:nth-child(3)'
     }
     /**
      * define selectors using getter methods
      */
     public get awayDefenceTeamFoulBtn() {
-        return '#root > div > div.main > div.team-buttons-base.arrowTop.enabled-true > div.team-buttons.team-1.dark > div:nth-child(3)'
+        return 'div.team-buttons.team-1.dark > div:nth-child(3)'
     }
     /**
      * define selectors using getter methods
@@ -167,7 +167,7 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get awayDefenceTeamTurnOverBtn() {
-        return '#root > div > div.main > div.team-buttons-base.arrowTop.enabled-true > div.team-buttons.team-0.dark > div:nth-child(4)'
+        return 'div.team-buttons.team-0.dark > div:nth-child(4)'
     }
     /**
      * define selectors using getter methods
@@ -257,7 +257,7 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get orangeFlag() {
-        return 'div.log-event.pending-true'
+        return 'div[class="log-event pending-true"]'
 
     }
     /**
@@ -306,43 +306,43 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get tipinMadeBtn() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div/div[1]'
+        return '//div[text() = "Tipin made"]'
     }
     /**
      * define selectors using getter methods
      */
     public get tipinMissBtn() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div/div[2]'
+        return '//div[text() = "Tipin missed"]'
     }
     /**
      * define selectors using getter methods
      */
     public get tipinMadeFauledBtn() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div/div[3]'
+        return '//div[text() = "Tipin made - fouled"]'
     }
     /**
      * define selectors using getter methods
      */
     public get noFollowOnBtn() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div/div[4]'
+        return '//div[text() = "No follow on"]'
     }
     /**
      * define selectors using getter methods
      */
     public get homeTeamRebound() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div[4]/div/div[1]'
+        return 'div > div.match-button.wide.team.team-0.enabled-true.dark'
     }
     /**
      * define selectors using getter methods
      */
     public get awayTeamRebound() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div[4]/div/div[2]'
+        return 'div > div.match-button.wide.team.team-1.enabled-true.dark'
     }
     /**
      * define selectors using getter methods
      */
     public get timeoutBtn() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div[2]/div[2]/div[2]'
+        return '//*[@id="root"]/div/div[2]/div[2]/div/div[2]/div[2]/div[2]'
     }
     /**
      * define selectors using getter methods
@@ -354,7 +354,7 @@ class GamePage extends Page {
     * define selectors using getter methods
     */
     public get homeTeamCallTimeout() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[1]/span'
+        return '//*[@id="root"]/div/div[2]/div[3]/div/div[1]/span'
     }
     /**
     * define selectors using getter methods
@@ -366,7 +366,7 @@ class GamePage extends Page {
     * define selectors using getter methods
     */
     public get awayTeamCallTimeout() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[3]/span'
+        return '//*[@id="root"]/div/div[2]/div[3]/div/div[3]/span'
     }
     /**
     * define selectors using getter methods
@@ -378,7 +378,7 @@ class GamePage extends Page {
     * define selectors using getter methods
     */
     public get fullTimeout() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[2]/div[1]'
+        return '//div[contains(text(),"Full timeout")]'
     }
     /**
     * define selectors using getter methods
@@ -390,7 +390,7 @@ class GamePage extends Page {
     * define selectors using getter methods
     */
     public get shortTimeout() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[2]/div[2]'
+        return '//div[contains(text(),"Short timeout")]'
     }
     /**
     * define selectors using getter methods
@@ -408,13 +408,13 @@ class GamePage extends Page {
     * define selectors using getter methods
     */
     public get commercialTimeout() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[2]/div[3]'
+        return '//div[contains(text(),"Commercial")]'
     }
     /**
     * define selectors using getter methods
     */
     public get officialTimeout() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[2]'
+        return '//div[contains(@class, "match-button enabled-true undefined") and contains(., "Official")]'
 
     }
     /**
@@ -435,7 +435,7 @@ class GamePage extends Page {
    * define selectors using getter methods
    */
     public get gameCommercial() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div[2]/div[2]'
+        return '//div[contains(text(),"Commercial")]'
 
     }
     /**
@@ -449,21 +449,14 @@ class GamePage extends Page {
     * define selectors using getter methods
     */
     public get bloodRuleCheckbox() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[3]/div[1]/i'
-
-    }
-    /**
-    * define selectors using getter methods
-    */
-    public get gameBloodRuleCheckbox() {
-        return '//*[@id="root"]/div/div[2]/div[6]/div/div[3]/div[1]/i'
+        return '//div[contains(@class, "option-button") and contains(., "Blood rule")]/i'
 
     }
     /**
      * define selectors using getter methods
      */
     public get mandatoryCheckbox() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[3]/div[2]/i'
+        return '//div[contains(@class, "option-button") and contains(., "Mandatory")]/i'
 
     }
     /**
@@ -477,7 +470,7 @@ class GamePage extends Page {
     * define selectors using getter methods
     */
     public get timeoutOkBtn() {
-        return '//*[@id="root"]/div/div[2]/div[7]/div/div[4]'
+        return '//div[contains(text(),"OK")]'
 
     }
     /**
@@ -505,28 +498,28 @@ class GamePage extends Page {
     * define selectors using getter methods
     */
     public get minutesArrowDownBtn() {
-        return '//*[@id="root"]/div/div[2]/div[2]/div[3]/i[2]'
+        return '//*[@id="root"]/div/div[2]/div/div[1]/div[2]/div[1]/div[3]/i[2]'
 
     }
     /**
     * define selectors using getter methods
     */
     public get secondsArrowDownBtn() {
-        return '//*[@id="root"]/div/div[2]/div[2]/div[4]/i[2]'
+        return '//*[@id="root"]/div/div[2]/div/div[1]/div[2]/div[1]/div[4]/i[2]'
 
     }
     /**
     * define selectors using getter methods
     */
     public get minutesArrowUpBtn() {
-        return '//*[@id="root"]/div/div[2]/div[2]/div[3]/i[1]'
+        return '//*[@id="root"]/div/div[2]/div/div[1]/div[2]/div[1]/div[3]/i[1]'
 
     }
     /**
     * define selectors using getter methods
     */
     public get secondsArrowUpBtn() {
-        return '//*[@id="root"]/div/div[2]/div[2]/div[4]/i[1]'
+        return '//*[@id="root"]/div/div[2]/div/div[1]/div[2]/div[1]/div[4]/i[1]'
 
     }
     /**
@@ -578,13 +571,13 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get teamTurnoverBtn() {
-        return '//*//div[2]/div[6]/div/div[contains(text(), "Team Turnover")]'
+        return '//div[contains(text(),"Team Turnover")]'
     }
     /**
      * define selectors using getter methods
      */
     public get noStealBtn() {
-        return '//*//div[2]/div[6]/div/div[contains(text(), "No Steal")]'
+        return '//div[contains(text(),"No Steal")]'
     }
     /**
      * define selectors using getter methods
@@ -611,13 +604,13 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get homeTeamSubstitutionBtns() {
-        return 'div.App div.main div.players-base.enabled-true div.subs-main-panel.main-panel.enabled-true.substitions:nth-child(2) div.subs-container:nth-child(2) div.substitutions:nth-child(1) div:nth-child(1) div.player-select.enabled-true div.inactive-players > div.player.active-false'
+        return 'div.substitutions:nth-child(1) div:nth-child(1) div.player-select.enabled-true div.inactive-players > div.player.active-false'
     }
     /**
      * define selectors using getter methods
      */
     public get awayTeamSubstitutionBtns() {
-        return 'div.App div.main div.players-base.enabled-true div.subs-main-panel.main-panel.enabled-true.substitions:nth-child(2) div.subs-container:nth-child(2) div.substitutions:nth-child(2) div:nth-child(1) div.player-select.enabled-true div.inactive-players > div.player.active-false'
+        return 'div.substitutions:nth-child(2) div:nth-child(1) div.player-select.enabled-true div.inactive-players > div.player.active-false'
     }
     /**
      * define selectors using getter methods
@@ -629,25 +622,25 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get nextPeriodBtn() {
-        return '//*[@id="root"]/div/div[2]/div[2]/span/div/span[1]'
+        return '//span[contains(text(),"Next Period")]'
     }
     /**
      * define selectors using getter methods
      */
     public get endMatchBtn() {
-        return '//*[@id="root"]/div/div[2]/div[2]/span/div/span[2]'
+        return '//span[contains(text(),"End Match")]'
     }
     /**
      * define selectors using getter methods
      */
     public get confirmMatchBtn() {
-        return '//*[@id="root"]/div/div[2]/div[2]/span/span'
+        return '//span[contains(text(),"Confirm Match")]'
     }
     /**
      * define selectors using getter methods
      */
     public get completeLabel() {
-        return '//*[@id="root"]/div/div[2]/div[2]/span/span'
+        return '//span[contains(text(),"Complete")]'
     }
     /**
      * define selectors using getter methods
@@ -679,14 +672,14 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get homeTeamFaulsLabel() {
-        return '//*[@id="root"]/div/div[2]/div[1]/div[1]/div[4]/div[1]'
+        return '//*[@id="root"]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]'
     }
 
     /**
      * define selectors using getter methods
      */
     public get awayTeamFaulsLabel() {
-        return '//*[@id="root"]/div/div[2]/div[1]/div[2]/div[4]/div[1]'
+        return '//*[@id="root"]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]'
     }
 
     public async made2Points(side: string, area: string, shotType: string, madeOrMiss: string, assist: string, foulOnShotCheckbox: boolean, fastBreakCheckbox: boolean, defensiveCheckbox: boolean, tipin: any, cancel: boolean) {
@@ -1052,7 +1045,7 @@ class GamePage extends Page {
         if (madeOrMiss === 'made') {
             await HelperPage.waitUntilElement(this.freethrowsMadeBtn, 60000)
             await $(await this.freethrowsMadeBtn).click()
-            let doneBtn = await $('//*[@id="root"]/div/div[2]/div[6]/div/div[2]/div[2]/div[1]/div[2]/../../div[4]')
+            let doneBtn = await $('//div[contains(@class, "match-button action enabled-true") and contains(., "Done")]')
             await HelperPage.waitUntilElement(doneBtn, 60000)
             await $(await doneBtn).click()
             await browser.pause(500)
@@ -1062,7 +1055,7 @@ class GamePage extends Page {
             await browser.pause(500)
             await $(await this.freethrowsMissedBtn).click()
             await browser.pause(500)
-            let doneBtn = await '//*[@id="root"]/div/div[2]/div[6]/div/div[2]/div[2]/div[1]/div[2]/../../div[4]'
+            let doneBtn = await '//div[contains(@class, "match-button action enabled-true") and contains(., "Done")]'
             await HelperPage.waitUntilElement(doneBtn, 60000)
             await browser.pause(500)
             await $(await doneBtn).click()
@@ -1081,10 +1074,10 @@ class GamePage extends Page {
             }
             if (side.toLocaleLowerCase() == 'away') {
                 await browser.pause(500)
-                let awayTeamPlayer = '//*[@id="root"]/div/div[2]/div[6]/div/div[3]/div[1]/div'
+                let awayTeamPlayer = 'div[class="player active-true dark  "]'
                 await HelperPage.waitUntilElement(awayTeamPlayer, 60000)
                 let player = await $$(await awayTeamPlayer)
-                randomPlayer = await HelperPage.generateRandomNumberRange(1, 4)
+                randomPlayer = await HelperPage.generateRandomNumberRange(5, 9)
                 await HelperPage.waitUntilElement(player[randomPlayer], 60000)
                 await browser.pause(500)
                 await $(await player[randomPlayer]).click()
@@ -1122,10 +1115,10 @@ class GamePage extends Page {
                     }
                     if (side.toLocaleLowerCase() == 'away') {
                         await browser.pause(500)
-                        let awayTeamPlayer = '//*[@id="root"]/div/div[2]/div[6]/div/div[3]/div[1]/div'
+                        let awayTeamPlayer = 'div[class="player active-true dark  "]'
                         await HelperPage.waitUntilElement(awayTeamPlayer, 60000)
                         let player = await $$(await awayTeamPlayer)
-                        randomPlayer = await HelperPage.generateRandomNumberRange(1, 4)
+                        randomPlayer = await HelperPage.generateRandomNumberRange(5, 9)
                         await browser.pause(500)
                         await HelperPage.waitUntilElement(player[randomPlayer], 60000)
                         await $(await player[randomPlayer]).click()
@@ -1156,10 +1149,10 @@ class GamePage extends Page {
                         await browser.pause(300)
                     }
                     if (side.toLocaleLowerCase() == 'away') {
-                        let awayTeamPlayer = '//*[@id="root"]/div/div[2]/div[6]/div/div[3]/div[1]/div'
+                        let awayTeamPlayer = 'div[class="player active-true dark  "]'
                         await HelperPage.waitUntilElement(awayTeamPlayer, 60000)
                         let player = await $$(await awayTeamPlayer)
-                        randomPlayer = await HelperPage.generateRandomNumberRange(1, 4)
+                        randomPlayer = await HelperPage.generateRandomNumberRange(5, 9)
                         await HelperPage.waitUntilElement(player[randomPlayer], 60000)
                         await $(await player[randomPlayer]).click()
                         await browser.pause(300)
@@ -1215,9 +1208,10 @@ class GamePage extends Page {
         const timeoutOkBtn = await $(await this.timeoutOkBtn)
         const commercialTimeout = await $(await this.commercialTimeout)
         const officialTimeout = await $(await this.officialTimeout)
-        const officialsTimeout = await $(await this.fullTimeout)
-        const commercial = await $(await this.shortTimeout)
-        const doneBtn = '//*[@id="root"]/div/div[2]/div[6]/div/div[2]/div[2]/div[1]/div[2]/../../div[4]'
+        const officialsTimeout = await $(await this.gameOfficials)
+        const commercial = await $(await this.commercialTimeout)
+        const gameMedia = await $(await this.gameMedia)
+        const doneBtn = '//div[contains(@class, "match-button action enabled-true") and contains(., "Done")]'
 
         if (side.toLowerCase() == "home") {
             await HelperPage.waitUntilElement(this.courtMap, 60000)
@@ -1269,7 +1263,7 @@ class GamePage extends Page {
         await this.checkTimeoutBtns(timeoutBtn, awayTeamCallTimeout, commercialTimeout, 'Commercial', bloodRuleCheckbox, mandatoryCheckbox, timeoutOkBtn)
         await this.checkTimeoutBtns(timeoutBtn, officialTimeout, officialsTimeout, 'Officials', bloodRuleCheckbox, mandatoryCheckbox, timeoutOkBtn)
         await this.checkTimeoutBtns(timeoutBtn, officialTimeout, commercial, 'Commercial', bloodRuleCheckbox, mandatoryCheckbox, timeoutOkBtn)
-        await this.checkTimeoutBtns(timeoutBtn, officialTimeout, commercialTimeout, 'Media', bloodRuleCheckbox, mandatoryCheckbox, timeoutOkBtn)
+        await this.checkTimeoutBtns(timeoutBtn, officialTimeout, gameMedia, 'Media', bloodRuleCheckbox, mandatoryCheckbox, timeoutOkBtn)
 
         await HelperPage.waitUntilElement(this.freethrowsMadeBtn, 60000)
         await $(await this.freethrowsMadeBtn).click()
@@ -1306,13 +1300,11 @@ class GamePage extends Page {
     */
     public async technicalFoul(side: string, fouledPlayer: string, fouledPlayer1: string) {
         const foulingPlayer5 = 'div.player-select.enabled-true > div.active-players > div:nth-child(5)'
-        const technicalFoulBtn = '//*[@id="root"]/div/div[2]/div[6]/div/div[2]/div[2]/div[3]'
-        const foulingHomeTeam = '//*[@id="root"]/div/div[2]/div[6]/div/div[1]/span'
-        const foulingAwayTeam = '//*[@id="root"]/div/div[2]/div[6]/div/div[2]/span'
-        const freethrowAwarded1 = '//*[@id="root"]/div/div[2]/div[6]/div/div[3]'
-        const freethrowAwarded2 = '//*[@id="root"]/div/div[2]/div[6]/div/div[4]'
-        const freethrowAwarded3 = '//*[@id="root"]/div/div[2]/div[6]/div/div[5]'
-        const freethrowShootingPlayer1 = '//*[@id="root"]/div/div[2]/div[6]/div/div[2]/div[3]/div/div[1]/div[1]'
+        const technicalFoulBtn = '//div[contains(text(),"Technical Foul")]'
+        const freethrowAwarded1 = '//div[contains(@class, "match-button small enabled-true undefined") and contains(., "1")]'
+        const freethrowAwarded2 = '//div[contains(@class, "match-button small enabled-true undefined") and contains(., "2")]'
+        const freethrowAwarded3 = '//div[contains(@class, "match-button small enabled-true undefined") and contains(., "3")]'
+        const freethrowShootingPlayer1 = '//*[@id="root"]/div[1]/div[2]/div[2]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]'
         const doneBtn = '//*/../../div[contains(text(),"Done")]'
         const benchBtn = '//*/div[contains(text(),"Bench")]'
         const coachBtn = '//*/div[contains(text(),"Coach")]'
@@ -1357,14 +1349,17 @@ class GamePage extends Page {
         await HelperPage.waitUntilElement(technicalFoulBtn, 60000)
         await $(await technicalFoulBtn).click()
 
+        let teams = 'div[class="match-button enabled-true dark"]'
+        const foulingTeam = await $$(await teams)
+
         if (side.toLocaleLowerCase() == 'home') {
-            await HelperPage.waitUntilElement(foulingHomeTeam, 60000)
-            await $(await foulingHomeTeam).click()
+            await HelperPage.waitUntilElement(foulingTeam[0], 60000)
+            await $(await foulingTeam[0]).click()
             await browser.pause(500)
         }
         else {
-            await HelperPage.waitUntilElement(foulingAwayTeam, 60000)
-            await $(await foulingAwayTeam).click()
+            await HelperPage.waitUntilElement(foulingTeam[1], 60000)
+            await $(await foulingTeam[1]).click()
             await browser.pause(500)
         }
 
@@ -1884,7 +1879,7 @@ class GamePage extends Page {
             const coordinateX = await HelperPage.generateRandomNumberRange(20, 220)
             const coordinateY = await HelperPage.generateRandomNumberRange(20, 180)
             await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
-            let turnover = '//*[@id="root"]/div/div[2]/div/div/div[contains(text(), "Turn over")]'
+            let turnover = '//*/div[contains(text(), "Turn over")]'
             await HelperPage.waitUntilElement(turnover, 60000)
             let teamTurnover = await $$(await turnover)
             await $(await teamTurnover[0]).click()
@@ -1893,7 +1888,7 @@ class GamePage extends Page {
             const coordinateX = await HelperPage.generateRandomNumberRange(20, 220)
             const coordinateY = await HelperPage.generateRandomNumberRange(20, 180)
             await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
-            let turnover = '//*[@id="root"]/div/div[2]/div/div/div[contains(text(), "Turn over")]'
+            let turnover = '//*/div[contains(text(), "Turn over")]'
             await HelperPage.waitUntilElement(turnover, 60000)
             let teamTurnover = await $$(await turnover)
             await $(await teamTurnover[1]).click()
@@ -1990,8 +1985,8 @@ class GamePage extends Page {
         }
         else {
             for (var i = 0; i < 5; i++) {
-                let homeTeamSubstitutionPlayers = '/html/body/div[1]/div/div[2]/div[4]/div[2]/div/div[1]/div[1]/div/div/div[2]/div[5]'
-                let awayTeamSubstitutionPlayers = '/html/body/div[1]/div/div[2]/div[4]/div[2]/div/div[1]/div[2]/div/div/div[2]/div[5]'
+                let homeTeamSubstitutionPlayers = '//*[@id="SubsContainer"]/div/div/div[1]/div[1]/div/div/div[2]/div[1]'
+                let awayTeamSubstitutionPlayers = '//*[@id="SubsContainer"]/div/div/div[1]/div[2]/div/div/div[2]/div[1]'
 
                 await HelperPage.waitUntilElement(homeTeamSubstitutionPlayers, 60000)
                 await $(await homeTeamSubstitutionPlayers).click()
@@ -2027,10 +2022,10 @@ class GamePage extends Page {
         const doubleFoulBtn = '//*/div[contains(text(),"Double Foul")]'
         const disqualifyingFoulBtn = '//*/div[contains(text(),"Disqualifying")]'
         const okBtn = '//div[contains(text(),"OK")]'
-        const btn0 = '//*[@id="root"]/div[1]/div[2]/div[6]/div[1]/div[2]'
-        const btn1 = '//*[@id="root"]/div[1]/div[2]/div[6]/div[1]/div[3]'
-        const btn2 = '//*[@id="root"]/div[1]/div[2]/div[6]/div[1]/div[4]'
-        const btn3 = '//*[@id="root"]/div[1]/div[2]/div[6]/div[1]/div[5]'
+        const btn0 = '//div[contains(@class, "match-button small enabled-true undefined") and contains(., "0")]'
+        const btn1 = '//div[contains(@class, "match-button small enabled-true undefined") and contains(., "1")]'
+        const btn2 = '//div[contains(@class, "match-button small enabled-true undefined") and contains(., "2")]'
+        const btn3 = '//div[contains(@class, "match-button small enabled-true undefined") and contains(., "3")]'
         const doneBtn = '//div[contains(text(),"Done")]'
         const noPlayerBtn = '//div[contains(text(),"No Player")]'
         const benchTechnicalBtn = '//div[contains(text(),"Bench technical")]'
@@ -3656,10 +3651,10 @@ class GamePage extends Page {
     */
     public async changeSemaphoreTime(up: string, upMinutes: number, upSeconds: number, down: string, downMinutes: number, downSeconds: number) {
 
-        const minutesArrowUpBtn = '//*[@id="root"]/div/div[2]/div[3]/div[2]/i[1]'
-        const minutesArrowDownBtn = '//*[@id="root"]/div/div[2]/div[3]/div[2]/i[2]'
-        const secondsArrowUpBtn = '//*[@id="root"]/div/div[2]/div[3]/div[3]/i[1]'
-        const secondsArrowDownBtn = '//*[@id="root"]/div/div[2]/div[3]/div[3]/i[2]'
+        const minutesArrowUpBtn = '//*[@id="root"]/div/div[2]/div[2]/div[2]/i[1]'
+        const minutesArrowDownBtn = '//*[@id="root"]/div/div[2]/div[2]/div[2]/i[2]'
+        const secondsArrowUpBtn = '//*[@id="root"]/div/div[2]/div[2]/div[3]/i[1]'
+        const secondsArrowDownBtn = '//*[@id="root"]/div/div[2]/div[2]/div[3]/i[2]'
 
         await browser.pause(1000)
 

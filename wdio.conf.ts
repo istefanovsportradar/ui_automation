@@ -5,6 +5,7 @@ const path = require('path');
 require('dotenv').config()
 const video = require('wdio-video-reporter');
 const fs = require('fs');
+const cap = require('./capabilitie.json')
 
 export const config: WebdriverIO.Config = {
     //
@@ -83,15 +84,15 @@ export const config: WebdriverIO.Config = {
             // (see https://developers.google.com/web/updates/2017/04/headless-chrome)
             args: [
                 '--disable-infobars',
-                '--window-size=1920,1080',
+                /*'--window-size=1920,1080',*/
             ].concat((function () {
                 return process.env.HEADLESS_CHROME === 'true' ? [
                     '--no-sandbox',
                     '--disable-infobars',
                     '--headless',
                     '--disable-gpu',
-                    '--disable-dev-shm-usage',
-                    '--window-size=1920,1080'] : [];
+                    '--disable-dev-shm-usage'/*,
+                '--window-size=1920,1080'*/] : [];
             })())
         },
         acceptInsecureCerts: true
@@ -252,7 +253,15 @@ export const config: WebdriverIO.Config = {
     before: async function (capabilities, specs) {
         //browser.maximizeWindow();
 
-        await browser.setWindowSize(1555, 883)
+        console.log(cap)
+        if (cap.capabilities.platformName == "mac os x") {
+            await browser.setWindowSize(1555, 880)
+
+        }
+        else {
+            await browser.setWindowSize(1920, 1080)
+        }
+
         const windowSize = await browser.getWindowSize();
 
         let capabilitie = {
