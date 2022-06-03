@@ -1,5 +1,6 @@
 import HelperPage from './helper.page';
 var expect = require('chai').expect
+require('dotenv').config();
 
 import Page from './page';
 
@@ -597,8 +598,8 @@ class GamePage extends Page {
      * define selectors using getter methods
      */
     public get substitutionArrowBtn() {
-        return 'i[class="fas fa-angle-double-down"]'
-
+        //return 'i[class="fas fa-angle-double-down"]'
+        return 'div[class="swap-icon"]'
     }
     /**
      * define selectors using getter methods
@@ -692,9 +693,16 @@ class GamePage extends Page {
             }
             else {
                 await HelperPage.waitUntilElement(this.courtMap, 60000)
-                const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
-                const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
-                await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                if (process.env.HEADLESS_CHROME === "true") {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(400, 420)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                }
+                else {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                }
                 await browser.pause(500)
 
             }
@@ -760,9 +768,16 @@ class GamePage extends Page {
             }
             else {
                 await HelperPage.waitUntilElement(this.courtMap, 60000)
-                const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
-                const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
-                await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                if (process.env.HEADLESS_CHROME === "true") {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(400, 420)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                }
+                else {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                }
                 await browser.pause(500)
             }
 
@@ -831,9 +846,16 @@ class GamePage extends Page {
         if (side.toLowerCase() == "home") {
 
             await HelperPage.waitUntilElement(this.courtMap, 60000)
-            const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
-            const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
-            await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+            if (process.env.HEADLESS_CHROME === 'true') {
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 45)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 45)
+                await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+            }
+            else {
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
+                await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+            }
 
             await HelperPage.waitUntilElement(this.homeTeamAttakMade2btn, 60000)
             await $(await this.homeTeamAttakMade2btn).click()
@@ -888,9 +910,16 @@ class GamePage extends Page {
         }
         else {
             await HelperPage.waitUntilElement(this.courtMap, 60000)
-            const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
-            const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
-            await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+            if (process.env.HEADLESS_CHROME === 'true') {
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 45)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 45)
+                await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+            }
+            else {
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
+                await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+            }
 
             await HelperPage.waitUntilElement(this.awayTeamAttakMade2btn, 60000)
             await $(await this.awayTeamAttakMade2btn).click()
@@ -1493,9 +1522,16 @@ class GamePage extends Page {
             }
             else {
                 await HelperPage.waitUntilElement(this.courtMap, 60000)
-                const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
-                const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
-                await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                if (process.env.HEADLESS_CHROME === "true") {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(400, 420)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                }
+                else {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                }
             }
 
             await HelperPage.waitUntilElement(this.homeTeamAttackTeamMiss2btn, 60000)
@@ -1587,9 +1623,16 @@ class GamePage extends Page {
             }
             else {
                 await HelperPage.waitUntilElement(this.courtMap, 60000)
-                const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
-                const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
-                await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                if (process.env.HEADLESS_CHROME === "true") {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(400, 420)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                }
+                else {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                }
             }
             await HelperPage.waitUntilElement(this.awayTeamAttackTeamMiss2btn, 60000)
             await $(await this.awayTeamAttackTeamMiss2btn).click()
@@ -1682,9 +1725,17 @@ class GamePage extends Page {
 
         if (side.toLowerCase() == "home") {
             await HelperPage.waitUntilElement(this.courtMap, 60000)
-            const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
-            const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
-            await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+            if (process.env.HEADLESS_CHROME === 'true') {
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 45)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 45)
+                await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+            }
+            else {
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
+                await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+            }
+
             let miss = 'div[class="team-button enabled-true success-0"]'
             await HelperPage.waitUntilElement(miss, 60000)
             let teamMiss = await $$(await miss)
@@ -1773,9 +1824,16 @@ class GamePage extends Page {
         }
         else {
             await HelperPage.waitUntilElement(this.courtMap, 60000)
-            const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
-            const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
-            await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+            if (process.env.HEADLESS_CHROME === 'true') {
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 45)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 45)
+                await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+            }
+            else {
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
+                await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+            }
             let miss = 'div[class="team-button enabled-true success-0"]'
             await HelperPage.waitUntilElement(miss, 60000)
             let teamMiss = await $$(await miss)
@@ -1958,12 +2016,13 @@ class GamePage extends Page {
         await $(await substitutionBtns[0]).click()
 
         await HelperPage.waitUntilElement(this.substitutionArrowBtn, 60000)
+        await browser.pause(500)
         const substitutionArrowBtns = await $$(await this.substitutionArrowBtn)
         let doneBtn = '//*/div[contains(text(),"Done")]'
 
         await HelperPage.waitUntilElement(substitutionArrowBtns[0], 60000)
         await $(await substitutionArrowBtns[0]).click()
-        await HelperPage.waitUntilElement(substitutionArrowBtns[0], 60000)
+        await HelperPage.waitUntilElement(substitutionArrowBtns[1], 60000)
         await $(await substitutionArrowBtns[1]).click()
         await browser.pause(200)
 
@@ -2042,9 +2101,17 @@ class GamePage extends Page {
             else {
                 await browser.pause(500)
                 await HelperPage.waitUntilElement(this.courtMap, 60000)
-                const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
-                const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
-                await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                if (process.env.HEADLESS_CHROME === "true") {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(400, 420)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                }
+                else {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
+                }
+
                 await browser.pause(500)
             }
 
@@ -2839,9 +2906,16 @@ class GamePage extends Page {
             else {
                 await browser.pause(500)
                 await HelperPage.waitUntilElement(this.courtMap, 60000)
-                const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
-                const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
-                await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                if (process.env.HEADLESS_CHROME === "true") {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(400, 420)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                }
+                else {
+                    const coordinateX = await HelperPage.generateRandomNumberRange(300, 350)
+                    const coordinateY = await HelperPage.generateRandomNumberRange(20, 60)
+                    await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
+                }
                 await browser.pause(500)
             }
 
