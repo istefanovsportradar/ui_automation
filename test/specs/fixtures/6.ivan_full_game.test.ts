@@ -34,8 +34,7 @@ describe('Full game', () => {
 
         //<--- CLICK SELECT BUTTON --->
 
-        await HelperPage.waitUntilElement(HomePage.btnSelect, 60000)
-
+        await HelperPage.waitUntilElement(HomePage.btnSelect, 120000)
         await $(await HomePage.btnSelect).click()
 
         //<--- SELECT ORGANIZATION --->
@@ -51,9 +50,10 @@ describe('Full game', () => {
         await $(await FixturesPage.firstTableRow).waitForClickable({ timeout: 120000 })
         await browser.pause(3000)
         await $(await FixturesPage.addNewFixtureBtn).click()
+        await browser.setTimeout({ 'pageLoad': 120000 })
         await HelperPage.waitUntilElement(FixturesPage.firstTableRow, 60000)
-        await browser.pause(3000)
         await $(await FixturesPage.firstTableRow).waitForClickable({ timeout: 60000 })
+        await browser.pause(3000)
 
         //<--- POPULATE FIXTURE --->
         let getDate = await FixturesPage.addNewFixture(

@@ -255,10 +255,10 @@ export const config: WebdriverIO.Config = {
 
         console.log(cap)
         if (cap.capabilities.platformName == "mac os x") {
-            await browser.setWindowSize(1575, 880)
+            await browser.setWindowSize(1579, 880)
         }
         else {
-            await browser.setWindowSize(1940, 1080)
+            await browser.setWindowSize(1944, 1080)
         }
 
         const windowSize = await browser.getWindowSize();
