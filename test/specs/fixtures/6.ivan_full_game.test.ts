@@ -269,8 +269,8 @@ describe('Full game', () => {
         //await expect(teamScoreResult[0]).toEqual("6")
         //await expect(teamScoreResult[1]).toEqual("7")
 
-        await HelperPage.waitUntilElement(GamePage.startPeriodBtn, 60000)
-        await $(await GamePage.startPeriodBtn).click()
+        //await HelperPage.waitUntilElement(GamePage.startPeriodBtn, 60000)
+        //await $(await GamePage.startPeriodBtn).click()
 
         await GamePage.made2Points(game.home, game.inBox, game.pullUpJumpShot, game.made, game.assist, game.foulOnShotTrue, game.fastBreakTrue, game.defensiveTrue, null, false)
         teamScoreResult = await HelperPage.returnArrayElementsTextFunction(await GamePage.teamScoreResult)
@@ -814,7 +814,8 @@ describe('Full game', () => {
         const playByPlayResponse = await HelperPage.getPlayByPlay(process.env.API_URL, token)
 
         await expect(playByPlayResponse.response.status).toEqual(200)
-        //await expect(playByPlayResponse.objectRows).toEqual(30064)
+        await expect(playByPlayResponse.objectRows).toBeGreaterThan(28000)
+        await expect(playByPlayResponse.objectRows).toBeLessThan(32000)
         await expect(playByPlayResponse.homeTeamPbpScore).toEqual(parseInt(teamScoreResult[0]))
         await expect(playByPlayResponse.awayTeamPbpScore).toEqual(parseInt(teamScoreResult[1]))
 
@@ -824,7 +825,6 @@ describe('Full game', () => {
         await expect(fixturesResponse.response.data.data[0].attendance).toEqual(attendanceNumber)
         await expect(fixturesResponse.response.data.data[0].competitors[1].score).toBe(teamScoreResult[0])
         await expect(fixturesResponse.response.data.data[0].competitors[0].score).toBe(teamScoreResult[1])
-
 
         await HelperPage.getStatisticsForEntityInFixtures(process.env.API_URL, token, "live")
 
