@@ -156,6 +156,10 @@ describe('Full game', () => {
         await $(competitor[0]).click()
         await $(competitor[5]).click()
 
+        const rolesResponse = await HelperPage.getRoles(process.env.API_URL, token)
+        await expect(rolesResponse.response.status).toEqual(200)
+        await expect(rolesResponse.rolesArraySort.length).toBe(10)
+
         await HelperPage.waitUntilElement(GamePage.startMatchBtn, 60000)
         await $(await GamePage.startMatchBtn).click()
         await HelperPage.waitUntilElement(GamePage.homeTeamStartFirstBtn, 60000)
@@ -813,19 +817,6 @@ describe('Full game', () => {
         //await expect(playByPlayResponse.objectRows).toEqual(30064)
         await expect(playByPlayResponse.homeTeamPbpScore).toEqual(parseInt(teamScoreResult[0]))
         await expect(playByPlayResponse.awayTeamPbpScore).toEqual(parseInt(teamScoreResult[1]))
-
-        const rolesResponse = await HelperPage.getRoles(process.env.API_URL, token)
-        await expect(rolesResponse.response.status).toEqual(200)
-        //await expect(rolesResponse.response.role1).toBe("COACH")
-        //await expect(rolesResponse.response.role2).toBe("COACH_ASSISTANT")
-        //await expect(rolesResponse.response.role3).toBe("COACH_ASSISTANT")
-        //await expect(rolesResponse.response.role4).toBe("COACH")
-        //await expect(rolesResponse.response.role5).toBe("COACH_ASSISTANT")
-        //await expect(rolesResponse.response.role6).toBe("COACH_ASSISTANT")
-        //await expect(rolesResponse.response.role7).toBe("COMMISSIONER")
-        //await expect(rolesResponse.response.role8).toBe("CREW_CHIEF")
-        //await expect(rolesResponse.response.role9).toBe("DOCTOR")
-        //await expect(rolesResponse.response.role10).toBe("GROUNDSKEEPER")
 
         const fixturesResponse = await HelperPage.getFixtures(process.env.API_URL, token)
         await expect(fixturesResponse.response.status).toEqual(200)

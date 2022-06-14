@@ -117,6 +117,7 @@ class HelperPage extends Page {
     */
     public async returnArrayElementsTextFunction(elements: string) {
 
+        await browser.pause(3000)
         const arrayOfTexts = await Promise.all(await $$(elements).map(elem => {
             return elem.getText()
         }))
@@ -518,14 +519,17 @@ class HelperPage extends Page {
         await browser.pause(3000)
 
         let metaCount = res.data.meta.count
-
-        let rols = {
-            response: res
-        };
+        let rolesArraySort = []
 
         for (var i = 0; i < metaCount; i++) {
-            rols.response["role" + (i + 1)] = res.data.data[i].role;
+            rolesArraySort.push(res.data.data[i].role)
         }
+        rolesArraySort.sort()
+
+        let rols = {
+            response: res,
+            rolesArraySort: rolesArraySort
+        };
 
         return rols
     }
@@ -669,7 +673,18 @@ class HelperPage extends Page {
         }
 
     }
+    /**
+    * a method to encapsule automation code to interact with the page
+    * e.g. function getResponse 
+    */
+    public async returnRolesFromFile() {
 
+        if (process.env.NAME === 'sandpit' || process.env.NAME === 'nonprod' || process.env.NAME === 'prod') {
+            let roles = ['COACH', 'COACH', 'COACH_ASSISTANT', 'COACH_ASSISTANT', 'COACH_ASSISTANT', 'COACH_ASSISTANT', 'COMMISSIONER', 'CREW_CHIEF', 'DOCTOR', 'GROUNDSKEEPER']
+            return roles
+        }
+
+    }
 }
 
 export default new HelperPage();

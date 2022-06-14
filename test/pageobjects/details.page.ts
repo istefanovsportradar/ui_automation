@@ -116,8 +116,9 @@ class DetailsPage extends Page {
             numb = (numb + 3)
         }
 
+        await browser.pause(500)
         await $(await this.detailsNextBtn).click()
-
+        await browser.pause(500)
         return randomAttendanceNumber
     }
 }
