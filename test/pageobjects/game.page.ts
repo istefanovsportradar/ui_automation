@@ -786,6 +786,7 @@ class GamePage extends Page {
                 }
             }
 
+            await browser.pause(500)
             await HelperPage.waitUntilElement(this.awayTeamAttakMade2btn, 60000)
             await $(await this.awayTeamAttakMade2btn).click()
 
@@ -853,8 +854,8 @@ class GamePage extends Page {
             await HelperPage.waitUntilElement(this.courtMap, 60000)
             if (process.env.HEADLESS_CHROME === 'true') {
                 await browser.pause(500)
-                const coordinateX = await HelperPage.generateRandomNumberRange(10, 100)
-                const coordinateY = await HelperPage.generateRandomNumberRange(10, 100)
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
                 await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
                 await browser.pause(500)
             }
@@ -866,6 +867,7 @@ class GamePage extends Page {
                 await browser.pause(500)
             }
 
+            await browser.pause(500)
             await HelperPage.waitUntilElement(this.homeTeamAttakMade2btn, 60000)
             await $(await this.homeTeamAttakMade2btn).click()
 
@@ -921,8 +923,8 @@ class GamePage extends Page {
             await HelperPage.waitUntilElement(this.courtMap, 60000)
             if (process.env.HEADLESS_CHROME === 'true') {
                 await browser.pause(500)
-                const coordinateX = await HelperPage.generateRandomNumberRange(10, 100)
-                const coordinateY = await HelperPage.generateRandomNumberRange(10, 100)
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
                 await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
                 await browser.pause(500)
             }
@@ -934,6 +936,7 @@ class GamePage extends Page {
                 await browser.pause(500)
             }
 
+            await browser.pause(500)
             await HelperPage.waitUntilElement(this.awayTeamAttakMade2btn, 60000)
             await $(await this.awayTeamAttakMade2btn).click()
 
@@ -1747,8 +1750,8 @@ class GamePage extends Page {
         if (side.toLowerCase() == "home") {
             await HelperPage.waitUntilElement(this.courtMap, 60000)
             if (process.env.HEADLESS_CHROME === 'true') {
-                const coordinateX = await HelperPage.generateRandomNumberRange(10, 100)
-                const coordinateY = await HelperPage.generateRandomNumberRange(10, 100)
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
                 await $(await this.courtMap).click({ x: -coordinateX, y: -coordinateY })
                 await browser.pause(500)
             }
@@ -1848,8 +1851,8 @@ class GamePage extends Page {
         else {
             await HelperPage.waitUntilElement(this.courtMap, 60000)
             if (process.env.HEADLESS_CHROME === 'true') {
-                const coordinateX = await HelperPage.generateRandomNumberRange(10, 100)
-                const coordinateY = await HelperPage.generateRandomNumberRange(10, 100)
+                const coordinateX = await HelperPage.generateRandomNumberRange(10, 180)
+                const coordinateY = await HelperPage.generateRandomNumberRange(10, 180)
                 await $(await this.courtMap).click({ x: coordinateX, y: -coordinateY })
                 await browser.pause(500)
             }
